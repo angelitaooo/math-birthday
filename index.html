@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
+	<title>Math Birthday - Angela Ordonez</title>
+	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.0/css/bulma.min.css">
+</head>
+<body>
+	<div class="columns is-mobile">
+	  <div class="column is-half is-offset-one-quarter">
+		<h1 class="title is-1">Math Birthday</h1>
+		<h3 class="title is-3">This site wants to help people celebrate their special "math birthdays." 
+		A "math birthday" is a date that is 10^n days after the day they were born.<h3>
+		<h3 class="title is-3">When were you born?<h3>
+		<form>
+			<span class="select is-medium">
+				<select id="select-year" class="date-picker">
+					<option value="">Select Year</option>
+				</select>
+			</span>
+			<span class="select is-medium">
+				<select id="select-month" class="date-picker">
+					<option value="">Select Month</option>
+				</select>
+			</span>
+			<span class="select is-medium">
+				<select id="select-day" class="date-picker">
+					<option value="">Select Day</option>					
+				</select>
+			</span>
+		</form>
+
+		<h3 class="title is-3" id="math-bday"></h3>
+	  </div>
+	</div>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
+	<script type="text/babel" src="script.js"></script>
+</body>
+</html>
