@@ -1,0 +1,29 @@
+{
+  "name": "math-birthday",
+  "version": "1.0.0",
+  "description": "math birthday app",
+  "main": "script.js",
+  "scripts": {
+    "start": "http-server",
+    "deploy": "node deploy.js",
+    "copy": "npm run delete && copyfiles index.html dist",
+    "delete": "rimraf dist",
+    "github": "npm run copy && npm run deploy"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/angelitaooo/math-birthday.git"
+  },
+  "author": "angela ordonez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/angelitaooo/math-birthday/issues"
+  },
+  "homepage": "https://github.com/angelitaooo/math-birthday#readme",
+  "devDependencies": {
+    "copyfiles": "^1.0.0",
+    "gh-pages": "^0.11.0",
+    "http-server": "^0.9.0",
+    "rimraf": "^2.5.4"
+  }
+}
