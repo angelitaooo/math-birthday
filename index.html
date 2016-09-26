@@ -4,11 +4,22 @@
 	<meta name="viewport" content="initial-scale=1, maximum-scale=1">
 	<title>Math Birthday - Angela Ordonez</title>
 	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.2.0/css/bulma.min.css">
+	<style type="text/css">
+		.math-title {
+			margin-top: 100px;
+		}
+		.result {
+			padding: 10px;
+		    margin-top: 30px;
+		    border: 1px solid black;
+		    border-radius: 6px;
+		}
+	</style>
 </head>
 <body>
 	<div class="columns is-mobile">
 	  <div class="column is-half is-offset-one-quarter">
-		<h1 class="title is-1">Math Birthday</h1>
+		<h1 class="title is-1 math-title">Math Birthday</h1>
 		<h3 class="title is-3">This site wants to help people celebrate their special "math birthdays." 
 		A "math birthday" is a date that is 10^n days after the day they were born.<h3>
 		<h3 class="title is-3">When were you born?<h3>
@@ -30,12 +41,77 @@
 			</span>
 		</form>
 
-		<h3 class="title is-3" id="math-bday"></h3>
+		<h4 class="title is-4" id="math-bday"></h4>
 	  </div>
 	</div>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.14.0/babel.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.15.1/moment.min.js"></script>
-	<script type="text/babel" src="script.js"></script>
+	<script type="text/babel">
+		var months = [
+			'January',
+			'February',
+			'March',
+			'April',
+			'May',
+			'June',
+			'July',
+			'August',
+			'September',
+			'October',
+			'November',
+			'December'
+		];
+		var years = [];
+		var days = [];
+		var selectMonth = $('#select-month');
+		var selectYear = $('#select-year');
+		var selectDay = $('#select-day');
+
+		function createOptionElement(value, select) {
+			var option = $(`<option value="${value}">${value}</option>`);
+			select.append(option);
+		}
+
+		function fillSelect(select, items){
+			items.forEach(function(item){
+				createOptionElement(item, select);
+			});
+		}
+
+		function getMathBday(day, month, year){
+			var birthday = moment(`${day} ${month} ${year}`);
+			var today = moment();
+			var diff = today.diff(birthday, 'days');
+			var exponential = `${diff}`.length;
+			var nextBday = birthday.add(Math.pow(10, exponential), 'days');
+			var mathBday = `Your next MathBday is on ${nextBday.format('DD-MMMM-YYYY')}. It will be your ${exponential} math bday!!!`;
+			return mathBday;
+		}
+
+		for(var i = 1900; i <= 2016; i++){
+			years.push(i);
+		}
+
+		for(var i = 1; i <= 31; i++){
+			days.push(i);
+		}
+
+		fillSelect(selectMonth, months);
+		fillSelect(selectYear, years);
+		fillSelect(selectDay, days);
+
+		//listen for changes
+		$('.date-picker').change(function(){
+			var bornYear = $('#select-year').val();
+			var bornMonth = $('#select-month').val();
+			var bornDay = $('#select-day').val();
+
+			if (bornYear!== "" && bornMonth !== "" && bornDay !== "") {
+				var mathBday = getMathBday(bornDay, bornMonth, bornYear);
+				$('#math-bday').text(mathBday).addClass('result');
+			}
+		});
+	</script>
 </body>
 </html>
