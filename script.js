@@ -59,6 +59,6 @@ $('.date-picker').change(function(){
 
 	if (bornYear!== "" && bornMonth !== "" && bornDay !== "") {
 		var mathBday = getMathBday(bornDay, bornMonth, bornYear);
-		$('#math-bday').text(mathBday);
+		$('#math-bday').text(mathBday).addClass('result');
 	}
 });
